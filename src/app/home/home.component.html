@@ -21,11 +21,11 @@
       </thead>
       <tbody>
       <tr *ngFor="let element of [].constructor(activityNumber); index as i">
-        <th scope="row">{{alphabets[i]}}</th>
+        <th scope="row">A{{i+1}}</th>
         <td>
           <ng-select  multiple="true" style="margin-top: -15px">
             <ng-option > none </ng-option>
-            <ng-option *ngFor="let element of [].constructor(activityNumber); index as j"> {{alphabets[j]}} </ng-option>
+            <ng-option *ngFor="let element of [].constructor(activityNumber); index as j"> A{{j+1}} </ng-option>
           </ng-select>
         </td>
         <td>
