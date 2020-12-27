@@ -6,7 +6,7 @@ import {NgApexchartsModule} from 'ng-apexcharts';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ActivityGraphComponent } from './activity-graph/activity-graph.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgSelectModule} from '@ng-select/ng-select';
 
 @NgModule({
@@ -16,7 +16,7 @@ import {NgSelectModule} from '@ng-select/ng-select';
     ActivityGraphComponent
   ],
   imports: [
-    BrowserModule, NgApexchartsModule, AppRoutingModule, FormsModule, NgSelectModule
+    BrowserModule, NgApexchartsModule, AppRoutingModule, FormsModule, NgSelectModule, ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

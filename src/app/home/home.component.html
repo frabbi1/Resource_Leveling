@@ -9,35 +9,40 @@
   </div>
 
   <div *ngIf="isActivityNumberGiven">
-    <button class="btn btn-primary" (click)="onProcess()"> Process </button>
-    <table class="table">
-      <thead>
-      <tr>
-        <th scope="col">Activity Code</th>
-        <th scope="col">Predecessors</th>
-        <th scope="col">Duration</th>
-        <th scope="col">Resources</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let element of activities; index as i">
-        <th scope="row">{{element.code}}</th>
-        <td>
-          <ng-select  multiple="true" style="margin-top: -15px">
-            <ng-option > none </ng-option>
-            <ng-option *ngFor="let activity of getOtherActivities(element); index as j"> {{activity.code}} </ng-option>
-          </ng-select>
-        </td>
-        <td>
-          <input type="number" min="0">
-        </td>
-        <td>
-          <input type="number" min="0">
-        </td>
+    <form [formGroup]="formActivities"  (ngSubmit)="onProcess()">
+    <button class="btn btn-primary" type = "submit"> Process </button>
+      <table class="table" formArrayName="activities">
+        <thead>
+        <tr>
+          <th scope="col">Activity Code</th>
+          <th scope="col">Predecessors</th>
+          <th scope="col">Duration</th>
+          <th scope="col">Resources</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let element of formActivities.get('activities').controls; index as i" [formGroupName]="i">
+          <th scope="row">{{element.value.code}}</th>
+          <td>
+            <ng-select  multiple="true" style="margin-top: -15px" formControlName="predecessors">
+              <ng-option [value]="null" > none </ng-option>
+              <ng-option *ngFor="let activity of getOtherActivities(element.value); index as j"
+                         [value]="activity">
+                {{activity.code}}
+              </ng-option>
+            </ng-select>
+          </td>
+          <td>
+            <input type="number" min="0" formControlName="duration">
+          </td>
+          <td>
+            <input type="number" min="0" formControlName="resources">
+          </td>
 
-      </tr>
-      </tbody>
-    </table>
+        </tr>
+        </tbody>
+      </table>
+    </form>
   </div>
 
 </div>
