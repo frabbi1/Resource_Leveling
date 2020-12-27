@@ -20,12 +20,12 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let element of [].constructor(activityNumber); index as i">
-        <th scope="row">A{{i+1}}</th>
+      <tr *ngFor="let element of activities; index as i">
+        <th scope="row">{{element.code}}</th>
         <td>
           <ng-select  multiple="true" style="margin-top: -15px">
             <ng-option > none </ng-option>
-            <ng-option *ngFor="let element of [].constructor(activityNumber); index as j"> A{{j+1}} </ng-option>
+            <ng-option *ngFor="let activity of getOtherActivities(element); index as j"> {{activity.code}} </ng-option>
           </ng-select>
         </td>
         <td>
