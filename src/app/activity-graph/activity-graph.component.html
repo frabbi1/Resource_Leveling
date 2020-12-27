@@ -1,0 +1,44 @@
+<div style="padding-left: 50px">
+  *This Graph is based on early start time.
+</div>
+<div style="padding-left:10%; padding-right: 10%">
+  <apx-chart
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [plotOptions]="chartOptions.plotOptions"
+    [xaxis]="chartOptions.xAxis"
+  ></apx-chart>
+</div>
+
+<div style="margin-left: 2%">
+  <b>Project Completion Time:</b> 18 days
+</div>
+
+<div style="padding: 10px 10px">
+  <table class="table">
+    <thead style="background-color: cadetblue">
+    <tr>
+      <th scope="row">Day</th>
+      <th *ngFor="let d of [].constructor(18); index as i">{{i+1}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th scope="row" style="background-color: cadetblue">Daily R</th>
+      <td *ngFor="let d of [].constructor(18)">1</td>
+    </tr>
+    <tr>
+      <th scope="row" style="background-color: cadetblue">&sum; R</th>
+      <td *ngFor="let d of [].constructor(18)">1</td>
+    </tr>
+    <tr>
+      <th scope="row" style="background-color: cadetblue">R<sup>2</sup></th>
+      <td *ngFor="let d of [].constructor(18)">1</td>
+    </tr>
+    <tr>
+      <th scope="row" style="background-color: cadetblue">&sum; R<sup>2</sup></th>
+      <td *ngFor="let d of [].constructor(18)">1</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

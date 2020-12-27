@@ -1,0 +1,43 @@
+<div style="padding: 30px">
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">No. of Activities</span>
+    </div>
+    <input type="number" min="0" placeholder="0" [(ngModel)]="activityNumber">
+    <button class="ml-2 mr-2 btn btn-primary" (click)="onClickOk()"> Ok </button>
+  </div>
+
+  <div *ngIf="isActivityNumberGiven">
+    <button class="btn btn-primary" (click)="onProcess()"> Process </button>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Activity Code</th>
+        <th scope="col">Predecessors</th>
+        <th scope="col">Duration</th>
+        <th scope="col">Resources</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let element of [].constructor(activityNumber); index as i">
+        <th scope="row">{{alphabets[i]}}</th>
+        <td>
+          <ng-select  multiple="true" style="margin-top: -15px">
+            <ng-option > none </ng-option>
+            <ng-option *ngFor="let element of [].constructor(activityNumber); index as j"> {{alphabets[j]}} </ng-option>
+          </ng-select>
+        </td>
+        <td>
+          <input type="number" min="0">
+        </td>
+        <td>
+          <input type="number" min="0">
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
