@@ -9,5 +9,5 @@ export interface Activity {
   totalFloat: number;
   resources: number;
   isCritical: boolean;
-  predecessors: Activity[];
+  predecessors: string[];
 }

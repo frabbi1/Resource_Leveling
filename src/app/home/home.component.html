@@ -27,7 +27,7 @@
             <ng-select  multiple="true" style="margin-top: -15px" formControlName="predecessors">
               <ng-option [value]="null" > none </ng-option>
               <ng-option *ngFor="let activity of getOtherActivities(element.value); index as j"
-                         [value]="activity">
+                         [value]="activity.code">
                 {{activity.code}}
               </ng-option>
             </ng-select>

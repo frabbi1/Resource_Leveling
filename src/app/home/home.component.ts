@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
     for (let i = 0; i < numOfActivities; i++) {
       const tempActivity: Activity = {
         code: 'A' + (i + 1).toString(),
-        predecessors: null,
+        predecessors: [],
         resources: 0,
         totalFloat: 0,
         duration: 0,
@@ -57,7 +57,8 @@ export class HomeComponent implements OnInit {
   }
 
   getOtherActivities(selfActivity: Activity) {
-    return this.activities.filter(a => a.code !== selfActivity.code);
+    const tempActivities = this.formActivities.get('activities').value;
+    return tempActivities.filter(a => a.code !== selfActivity.code);
   }
 
   private createForm(fgs) {
@@ -74,7 +75,7 @@ export class HomeComponent implements OnInit {
   private createActivityForm(serial) {
     return this.fb.group({
       code: ['A' + serial],
-      predecessors: [null],
+      predecessors: [[]],
       resources: [0],
       totalFloat: [0],
       duration: [0],
