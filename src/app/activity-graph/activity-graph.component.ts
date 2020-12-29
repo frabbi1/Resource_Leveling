@@ -19,4 +19,6 @@ export class ActivityGraphComponent implements OnInit {
   gotoBurgess() {
     this.router.navigate(['activity-graph/burgess']).then();
   }
+  gotoMinimized() {
+  }
 }

@@ -41,7 +41,6 @@ export class BurgessService {
           if (rSquare < minRSquare) {
             minRSquare = rSquare;
             minI = i;
-            // console.log(rSquare);
           }
         }
         act.earlyStart = act.earlyStart + minI + 1;
@@ -49,8 +48,6 @@ export class BurgessService {
         this.cpm.countFreeFloat(this.activityList);
       }
     });
-    // console.log(this.rs.getResourceTable(this.activityList));
-    // console.log(this.activityList);
   }
 
   private sortByEF() {

@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   formActivities;
   formItems: FormArray;
 
+  // tslint:disable-next-line:max-line-length
   constructor(private router: Router, private fb: FormBuilder, private cpm: CpmService, private ds: DataService, private bg: BurgessService) { }
 
   ngOnInit(): void {
