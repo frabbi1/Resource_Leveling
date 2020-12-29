@@ -9,6 +9,7 @@ import { ActivityGraphComponent } from './activity-graph/activity-graph.componen
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgSelectModule} from '@ng-select/ng-select';
 import { AboutUsComponent } from './about-us/about-us.component';
+import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
   imports: [
     BrowserModule, NgApexchartsModule, AppRoutingModule, FormsModule, NgSelectModule, ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{provide : LocationStrategy , useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

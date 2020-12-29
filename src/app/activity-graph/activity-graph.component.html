@@ -17,7 +17,7 @@
 
 <div style="padding: 10px 10px">
   <table class="table">
-    <thead style="background-color: cadetblue">
+    <thead style="background-color: orange">
     <tr>
       <th scope="row">Day</th>
       <th *ngFor="let d of [].constructor(projectCompletionTime); index as i">{{i+1}}</th>
@@ -25,19 +25,19 @@
     </thead>
     <tbody>
     <tr>
-      <th scope="row" style="background-color: cadetblue">Daily R</th>
+      <th scope="row" style="background-color: orange">Daily R</th>
       <td *ngFor="let d of getDailyR()">{{d}}</td>
     </tr>
     <tr>
-      <th scope="row" style="background-color: cadetblue">&sum; R</th>
+      <th scope="row" style="background-color: orange">&sum; R</th>
       <td *ngFor="let d of getSumR()">{{d}}</td>
     </tr>
     <tr>
-      <th scope="row" style="background-color: cadetblue">Daily R<sup>2</sup></th>
+      <th scope="row" style="background-color: orange">Daily R<sup>2</sup></th>
       <td *ngFor="let d of getDailyRsqr()">{{d}}</td>
     </tr>
     <tr>
-      <th scope="row" style="background-color: cadetblue">&sum; R<sup>2</sup></th>
+      <th scope="row" style="background-color: orange">&sum; R<sup>2</sup></th>
       <td *ngFor="let d of getSumRsqr()">{{d}}</td>
     </tr>
     </tbody>
