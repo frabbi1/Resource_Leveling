@@ -8,12 +8,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { ActivityGraphComponent } from './activity-graph/activity-graph.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgSelectModule} from '@ng-select/ng-select';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ActivityGraphComponent
+    ActivityGraphComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule, NgApexchartsModule, AppRoutingModule, FormsModule, NgSelectModule, ReactiveFormsModule

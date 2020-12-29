@@ -10,9 +10,7 @@
 
   <div *ngIf="isActivityNumberGiven">
     <form [formGroup]="formActivities"  (ngSubmit)="onProcess()">
-    <button class="btn btn-primary" type = "submit">
-      Process
-    </button>
+
       <table class="table" formArrayName="activities">
         <thead>
         <tr>
@@ -43,6 +41,9 @@
         </tr>
         </tbody>
       </table>
+      <button class="btn btn-primary mt-3" type = "submit">
+        Process
+      </button>
     </form>
   </div>
 
