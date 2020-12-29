@@ -18,7 +18,7 @@ export class CpmService {
     this.doForwardPass(activityList);
     this.doBackwardPass(activityList);
     this.countSlackTime(activityList);
-    console.log(activityList);
+    this.countFreeFloat(activityList);
     return activityList;
   }
 
@@ -139,5 +139,31 @@ export class CpmService {
         activity.isCritical = true;
       }
     });
+  }
+
+  public countFreeFloat(activityList: Activity[]) {
+    activityList.forEach(a => {
+      if (a.successors === null) {
+        a.freeFloat = this.getProjectCompletionTime(activityList) - a.earlyFinish;
+      } else {
+        const scs = this.findSuccessorActivities(a, activityList);
+        let min = Number.MAX_SAFE_INTEGER;
+        scs.forEach( sc => {
+          min = Math.min(sc.earlyStart, min);
+        });
+        a.freeFloat = min - a.earlyFinish;
+      }
+    });
+  }
+
+  public getProjectCompletionTime(activityList: Activity[]) {
+    let max = 0;
+    activityList.forEach(act => {
+      if (act.isCritical === true) {
+        max = Math.max(act.lateFinish, max);
+      }
+    });
+
+    return max;
   }
 }

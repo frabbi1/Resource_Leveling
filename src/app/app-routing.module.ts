@@ -3,10 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {ActivityGraphComponent} from './activity-graph/activity-graph.component';
 import {AboutUsComponent} from "./about-us/about-us.component";
+import {CpmGraphComponent} from "./activity-graph/cpm-graph/cpm-graph.component";
+import {BurgessDiagramComponent} from "./activity-graph/burgess-diagram/burgess-diagram.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'activity-graph', component: ActivityGraphComponent },
+  { path: 'activity-graph', component: ActivityGraphComponent,
+    children: [
+      {path: 'cpm', component: CpmGraphComponent},
+      {path: 'burgess', component: BurgessDiagramComponent}
+    ] },
   { path: 'about-us', component: AboutUsComponent }
 ];
 
