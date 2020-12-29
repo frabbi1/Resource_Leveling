@@ -33,7 +33,6 @@ export class BurgessService {
         for (let i = 0; i < ff; i++) {
           const temp = _.cloneDeep(this.activityList);
           const tAct = temp.filter(a => a.code === act.code)[0];
-          // console.log(tAct);
           tAct.earlyStart = tAct.earlyStart + i + 1;
           tAct.earlyFinish = tAct.earlyStart + tAct.duration;
           const sumRSquare = this.rs.getResourceTable(temp).sumRsqr;
@@ -41,7 +40,6 @@ export class BurgessService {
           if (rSquare < minRSquare) {
             minRSquare = rSquare;
             minI = i;
-            // console.log(rSquare);
           }
         }
         act.earlyStart = act.earlyStart + minI + 1;
@@ -49,8 +47,6 @@ export class BurgessService {
         this.cpm.countFreeFloat(this.activityList);
       }
     });
-    // console.log(this.rs.getResourceTable(this.activityList));
-    // console.log(this.activityList);
   }
 
   private sortByEF() {
