@@ -23,55 +23,6 @@ export class ActivityGraphComponent implements OnInit {
   public projectCompletionTime = 0;
   private resTable;
   constructor( private dataService: DataService, private rService: ResourceService) {
-    this.chartOptions = {
-      series: [
-        {
-          name: 'Activity Timestamp',
-          color: '#1e00ff',
-          data: this.getData()
-        },
-        {
-          name: 'Slack Time',
-          color: '#87afff',
-          data: this.getSlackTimeData()
-        }
-      ],
-      chart: {
-        height: 600,
-        type: 'rangeBar'
-      },
-      plotOptions: {
-        bar: {
-          horizontal: true,
-          barHeight: '30%'
-        }
-      },
-      xAxis: {
-        title: {
-          text: 'Time (Days)'
-        },
-        min: 0, max: 20, tickAmount: 20,
-        axisBorder: {
-          color: '#000000'
-        },
-        axisTicks: {
-          color: '#000000',
-        },
-        type: 'category'
-      },
-      yAxis: {
-        title: {
-          text: 'Activity'
-        },
-        axisBorder: {
-          color: '#000000'
-        },
-        axisTicks: {
-          color: '#6a2e2e',
-          width: 10
-        }
-      }
-    };
   }
 
   public getData() {
@@ -109,6 +60,7 @@ export class ActivityGraphComponent implements OnInit {
   ngOnInit(): void {
     this.projectCompletionTime = this.dataService.getProjectCompletionTime();
     this.resTable = this.rService.getResourceTable(this.dataService.getCPM());
+    this.initChart();
   }
 
   public getDailyR() {
@@ -122,6 +74,58 @@ export class ActivityGraphComponent implements OnInit {
   }
   public getSumRsqr() {
     return this.resTable.sumRsqr;
+  }
+
+  private initChart() {
+    this.chartOptions = {
+      series: [
+        {
+          name: 'Activity Timestamp',
+          color: '#1e00ff',
+          data: this.getData()
+        },
+        {
+          name: 'Slack Time',
+          color: '#87afff',
+          data: this.getSlackTimeData()
+        }
+      ],
+      chart: {
+        height: 600,
+        type: 'rangeBar'
+      },
+      plotOptions: {
+        bar: {
+          horizontal: true,
+          barHeight: '30%'
+        }
+      },
+      xAxis: {
+        title: {
+          text: 'Time (Days)'
+        },
+        min: 0, max: this.projectCompletionTime + 2, tickAmount: this.projectCompletionTime + 2,
+        axisBorder: {
+          color: '#000000'
+        },
+        axisTicks: {
+          color: '#000000',
+        },
+        type: 'category'
+      },
+      yAxis: {
+        title: {
+          text: 'Activity'
+        },
+        axisBorder: {
+          color: '#000000'
+        },
+        axisTicks: {
+          color: '#6a2e2e',
+          width: 10
+        }
+      }
+    };
   }
 
 }
