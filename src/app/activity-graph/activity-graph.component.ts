@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ApexAxisChartSeries, ApexChart, ApexPlotOptions, ApexXAxis, ApexYAxis, ChartComponent} from 'ng-apexcharts';
 import {activityTable} from '../../test-data/activity-table';
 import {DataService} from "../services/data.service";
+import {ResourceService} from "../services/resource.service";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -20,7 +21,8 @@ export class ActivityGraphComponent implements OnInit {
   @ViewChild('chart') chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
   public projectCompletionTime = 0;
-  constructor( private dataService: DataService) {
+  private resTable;
+  constructor( private dataService: DataService, private rService: ResourceService) {
     this.chartOptions = {
       series: [
         {
@@ -106,6 +108,20 @@ export class ActivityGraphComponent implements OnInit {
 
   ngOnInit(): void {
     this.projectCompletionTime = this.dataService.getProjectCompletionTime();
+    this.resTable = this.rService.getResourceTable(this.dataService.getCPM());
+  }
+
+  public getDailyR() {
+    return this.resTable.dailyR;
+  }
+  public getDailyRsqr() {
+    return this.resTable.dailyRsqr;
+  }
+  public getSumR() {
+    return this.resTable.sumR;
+  }
+  public getSumRsqr() {
+    return this.resTable.sumRsqr;
   }
 
 }

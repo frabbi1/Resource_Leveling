@@ -26,19 +26,19 @@
     <tbody>
     <tr>
       <th scope="row" style="background-color: cadetblue">Daily R</th>
-      <td *ngFor="let d of [].constructor(projectCompletionTime)">1</td>
+      <td *ngFor="let d of getDailyR()">{{d}}</td>
     </tr>
     <tr>
       <th scope="row" style="background-color: cadetblue">&sum; R</th>
-      <td *ngFor="let d of [].constructor(projectCompletionTime)">1</td>
+      <td *ngFor="let d of getSumR()">{{d}}</td>
     </tr>
     <tr>
-      <th scope="row" style="background-color: cadetblue">R<sup>2</sup></th>
-      <td *ngFor="let d of [].constructor(projectCompletionTime)">1</td>
+      <th scope="row" style="background-color: cadetblue">Daily R<sup>2</sup></th>
+      <td *ngFor="let d of getDailyRsqr()">{{d}}</td>
     </tr>
     <tr>
       <th scope="row" style="background-color: cadetblue">&sum; R<sup>2</sup></th>
-      <td *ngFor="let d of [].constructor(projectCompletionTime)">1</td>
+      <td *ngFor="let d of getSumRsqr()">{{d}}</td>
     </tr>
     </tbody>
   </table>

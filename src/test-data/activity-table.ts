@@ -10,13 +10,13 @@ export let activityTable: Activity[] = [
     lateFinish: Number.MAX_SAFE_INTEGER,
     duration: 2,
     totalFloat: 0,
-    resources: 0,
+    resources: 4,
     successors: null,
-    predecessors: ['A1'],
+    predecessors: ['A'],
     isCritical: false
   },
   {
-    code: 'A1',
+    code: 'A',
     description: null,
     earlyStart: 0,
     earlyFinish: 0,
@@ -24,7 +24,7 @@ export let activityTable: Activity[] = [
     lateFinish: Number.MAX_SAFE_INTEGER,
     duration: 3,
     totalFloat: 0,
-    resources: 0,
+    resources: 3,
     successors: null,
     predecessors: ['NONE'],
     isCritical: false
@@ -39,7 +39,7 @@ export let activityTable: Activity[] = [
     lateFinish: Number.MAX_SAFE_INTEGER,
     duration: 5,
     totalFloat: 0,
-    resources: 0,
+    resources: 2,
     successors: null,
     predecessors: ['NONE'],
     isCritical: false
@@ -54,9 +54,9 @@ export let activityTable: Activity[] = [
     lateFinish: Number.MAX_SAFE_INTEGER,
     duration: 6,
     totalFloat: 0,
-    resources: 0,
+    resources: 3,
     successors: null,
-    predecessors: ['A1'],
+    predecessors: ['A'],
     isCritical: false
   },
 
@@ -71,7 +71,7 @@ export let activityTable: Activity[] = [
     lateFinish: Number.MAX_SAFE_INTEGER,
     duration: 3,
     totalFloat: 0,
-    resources: 0,
+    resources: 2,
     successors: null,
     predecessors: ['D'],
     isCritical: false
@@ -86,7 +86,7 @@ export let activityTable: Activity[] = [
     lateFinish: Number.MAX_SAFE_INTEGER,
     duration: 3,
     totalFloat: 0,
-    resources: 0,
+    resources: 1,
     successors: null,
     predecessors: ['D'],
     isCritical: false
@@ -101,7 +101,7 @@ export let activityTable: Activity[] = [
     lateFinish: Number.MAX_SAFE_INTEGER,
     duration: 4,
     totalFloat: 0,
-    resources: 0,
+    resources: 3,
     successors: null,
     predecessors: ['B'],
     isCritical: false
@@ -116,7 +116,7 @@ export let activityTable: Activity[] = [
     lateFinish: Number.MAX_SAFE_INTEGER,
     duration: 5,
     totalFloat: 0,
-    resources: 0,
+    resources: 2,
     successors: null,
     predecessors: ['F', 'G'],
     isCritical: false
@@ -131,7 +131,7 @@ export let activityTable: Activity[] = [
     lateFinish: Number.MAX_SAFE_INTEGER,
     duration: 4,
     totalFloat: 0,
-    resources: 0,
+    resources: 3,
     successors: null,
     predecessors: ['C'],
     isCritical: false
@@ -146,7 +146,7 @@ export let activityTable: Activity[] = [
     lateFinish: Number.MAX_SAFE_INTEGER,
     duration: 2,
     totalFloat: 0,
-    resources: 0,
+    resources: 4,
     successors: null,
     predecessors: ['E', 'I'],
     isCritical: false
@@ -161,7 +161,7 @@ export let activityTable: Activity[] = [
     lateFinish: Number.MAX_SAFE_INTEGER,
     duration: 3,
     totalFloat: 0,
-    resources: 0,
+    resources: 5,
     successors: null,
     predecessors: ['J'],
     isCritical: false

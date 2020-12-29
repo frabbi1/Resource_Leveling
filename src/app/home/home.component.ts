@@ -34,8 +34,8 @@ export class HomeComponent implements OnInit {
   }
 
   onProcess() {
-    const activityList: Activity[] = this.formActivities.value.activities;
-    // const activityList: Activity[] = activityTable;
+    // const activityList: Activity[] = this.formActivities.value.activities;
+    const activityList: Activity[] = activityTable;
     this.setSuccessors(activityList);
     const processedActivities: Activity[] = this.cpm.getCpmTable(activityList);
     this.ds.setCPM(processedActivities);
