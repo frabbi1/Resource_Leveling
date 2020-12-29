@@ -7,6 +7,7 @@ export interface Activity {
   lateFinish: number;
   duration: number;
   totalFloat: number;
+  freeFloat: number;
   resources: number;
   isCritical: boolean;
   predecessors: string[];
@@ -25,5 +26,6 @@ export let NullActivity: Activity = {
   earlyFinish: 0,
   earlyStart: 0,
   description: undefined,
-  isCritical: false
+  isCritical: false,
+  freeFloat: 0
 }

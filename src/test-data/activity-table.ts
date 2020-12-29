@@ -13,7 +13,8 @@ export let activityTable: Activity[] = [
     resources: 4,
     successors: null,
     predecessors: ['A'],
-    isCritical: false
+    isCritical: false,
+    freeFloat: 0
   },
   {
     code: 'A',
@@ -27,7 +28,8 @@ export let activityTable: Activity[] = [
     resources: 3,
     successors: null,
     predecessors: ['NONE'],
-    isCritical: false
+    isCritical: false,
+    freeFloat: 0
   },
 
   {
@@ -42,7 +44,8 @@ export let activityTable: Activity[] = [
     resources: 2,
     successors: null,
     predecessors: ['NONE'],
-    isCritical: false
+    isCritical: false,
+    freeFloat: 0
   },
 
   {
@@ -57,7 +60,23 @@ export let activityTable: Activity[] = [
     resources: 3,
     successors: null,
     predecessors: ['A'],
-    isCritical: false
+    isCritical: false,
+    freeFloat: 0
+  },
+  {
+    code: 'F',
+    description: null,
+    earlyStart: 0,
+    earlyFinish: 0,
+    lateStart: 0,
+    lateFinish: Number.MAX_SAFE_INTEGER,
+    duration: 3,
+    totalFloat: 0,
+    resources: 1,
+    successors: null,
+    predecessors: ['D'],
+    isCritical: false,
+    freeFloat: 0
   },
 
 
@@ -74,23 +93,11 @@ export let activityTable: Activity[] = [
     resources: 2,
     successors: null,
     predecessors: ['D'],
-    isCritical: false
+    isCritical: false,
+    freeFloat: 0
   },
 
-  {
-    code: 'F',
-    description: null,
-    earlyStart: 0,
-    earlyFinish: 0,
-    lateStart: 0,
-    lateFinish: Number.MAX_SAFE_INTEGER,
-    duration: 3,
-    totalFloat: 0,
-    resources: 1,
-    successors: null,
-    predecessors: ['D'],
-    isCritical: false
-  },
+
 
   {
     code: 'G',
@@ -104,7 +111,8 @@ export let activityTable: Activity[] = [
     resources: 3,
     successors: null,
     predecessors: ['B'],
-    isCritical: false
+    isCritical: false,
+    freeFloat: 0
   },
 
   {
@@ -119,7 +127,8 @@ export let activityTable: Activity[] = [
     resources: 2,
     successors: null,
     predecessors: ['F', 'G'],
-    isCritical: false
+    isCritical: false,
+    freeFloat: 0
   },
 
   {
@@ -134,7 +143,8 @@ export let activityTable: Activity[] = [
     resources: 3,
     successors: null,
     predecessors: ['C'],
-    isCritical: false
+    isCritical: false,
+    freeFloat: 0
   },
 
   {
@@ -149,7 +159,8 @@ export let activityTable: Activity[] = [
     resources: 4,
     successors: null,
     predecessors: ['E', 'I'],
-    isCritical: false
+    isCritical: false,
+    freeFloat: 0
   },
 
   {
@@ -164,6 +175,7 @@ export let activityTable: Activity[] = [
     resources: 5,
     successors: null,
     predecessors: ['J'],
-    isCritical: false
+    isCritical: false,
+    freeFloat: 0
   }
 ];

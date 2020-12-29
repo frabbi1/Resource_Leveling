@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Activity} from "../models";
+import * as _ from "lodash";
+import {CpmService} from "./cpm.service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +12,10 @@ export class DataService {
   private burgessList: Activity[];
   private optimalList: Activity[];
 
-  constructor() { }
+  constructor(private cpm: CpmService) { }
 
   public setCPM(activityList: Activity[]) {
-    this.cpmList = activityList;
+    this.cpmList = _.cloneDeep(activityList);
   }
 
   public getCPM() {
@@ -21,13 +23,6 @@ export class DataService {
   }
 
   public getProjectCompletionTime() {
-    let max = 0;
-    this.cpmList.forEach(act => {
-      if(act.isCritical === true) {
-        max = Math.max(act.lateFinish, max);
-      }
-    });
-
-    return max;
+    return this.cpm.getProjectCompletionTime(this.cpmList);
   }
 }

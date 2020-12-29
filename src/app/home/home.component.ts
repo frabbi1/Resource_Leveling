@@ -5,6 +5,7 @@ import {FormArray, FormBuilder} from "@angular/forms";
 import {DataService} from "../services/data.service";
 import {CpmService} from "../services/cpm.service";
 import {activityTable} from "../../test-data/activity-table";
+import {BurgessService} from "../services/burgess.service";
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,7 @@ export class HomeComponent implements OnInit {
   formActivities;
   formItems: FormArray;
 
-  constructor(private router: Router, private fb: FormBuilder, private cpm: CpmService, private ds: DataService) { }
+  constructor(private router: Router, private fb: FormBuilder, private cpm: CpmService, private ds: DataService, private bg: BurgessService) { }
 
   ngOnInit(): void {
   }
@@ -39,6 +40,10 @@ export class HomeComponent implements OnInit {
     this.setSuccessors(activityList);
     const processedActivities: Activity[] = this.cpm.getCpmTable(activityList);
     this.ds.setCPM(processedActivities);
+    const t0 = performance.now();
+    this.bg.processBurgess(processedActivities);
+    const t1 = performance.now();
+    console.log(t1 - t0);
     this.router.navigate(['activity-graph']).then();
   }
 
@@ -57,7 +62,8 @@ export class HomeComponent implements OnInit {
         earlyFinish: 0,
         earlyStart: 0,
         description: undefined,
-        isCritical: false
+        isCritical: false,
+        freeFloat: 0
       };
       activityList.push(tempActivity);
     }
@@ -95,7 +101,8 @@ export class HomeComponent implements OnInit {
       earlyFinish: [0],
       earlyStart: [0],
       description: [undefined],
-      isCritical: [false]
+      isCritical: [false],
+      freeFloat: 0
     });
   }
 
