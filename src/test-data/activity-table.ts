@@ -1,134 +1,169 @@
+import {Activity} from "../app/models";
 
-export let activityTable = [
+export let activityTable: Activity[] = [
   {
-    code: 'A',
+    code: 'D',
     description: null,
     earlyStart: 0,
-    earlyFinish: 3,
+    earlyFinish: 0,
     lateStart: 0,
-    lateFinish: 3,
+    lateFinish: Number.MAX_SAFE_INTEGER,
+    duration: 2,
+    totalFloat: 0,
+    resources: 0,
+    successors: null,
+    predecessors: ['A1'],
+    isCritical: false
+  },
+  {
+    code: 'A1',
+    description: null,
+    earlyStart: 0,
+    earlyFinish: 0,
+    lateStart: 0,
+    lateFinish: Number.MAX_SAFE_INTEGER,
     duration: 3,
     totalFloat: 0,
-    resources: 3
+    resources: 0,
+    successors: null,
+    predecessors: ['NONE'],
+    isCritical: false
   },
 
   {
     code: 'B',
     description: null,
     earlyStart: 0,
-    earlyFinish: 5,
-    lateStart: 4,
-    lateFinish: 9,
+    earlyFinish: 0,
+    lateStart: 0,
+    lateFinish: Number.MAX_SAFE_INTEGER,
     duration: 5,
-    totalFloat: 4,
-    resources: 2
+    totalFloat: 0,
+    resources: 0,
+    successors: null,
+    predecessors: ['NONE'],
+    isCritical: false
   },
 
   {
     code: 'C',
     description: null,
-    earlyStart: 3,
-    earlyFinish: 9,
-    lateStart: 3,
-    lateFinish: 9,
+    earlyStart: 0,
+    earlyFinish: 0,
+    lateStart: 0,
+    lateFinish: Number.MAX_SAFE_INTEGER,
     duration: 6,
     totalFloat: 0,
-    resources: 3
+    resources: 0,
+    successors: null,
+    predecessors: ['A1'],
+    isCritical: false
   },
 
-  {
-    code: 'D',
-    description: null,
-    earlyStart: 3,
-    earlyFinish: 5,
-    lateStart: 8,
-    lateFinish: 10,
-    duration: 2,
-    totalFloat: 5,
-    resources: 4
-  },
+
 
   {
     code: 'E',
     description: null,
-    earlyStart: 5,
-    earlyFinish: 8,
-    lateStart: 10,
-    lateFinish: 13,
+    earlyStart: 0,
+    earlyFinish: 0,
+    lateStart: 0,
+    lateFinish: Number.MAX_SAFE_INTEGER,
     duration: 3,
-    totalFloat: 5,
-    resources: 2
+    totalFloat: 0,
+    resources: 0,
+    successors: null,
+    predecessors: ['D'],
+    isCritical: false
   },
 
   {
     code: 'F',
     description: null,
-    earlyStart: 5,
-    earlyFinish: 8,
-    lateStart: 10,
-    lateFinish: 13,
+    earlyStart: 0,
+    earlyFinish: 0,
+    lateStart: 0,
+    lateFinish: Number.MAX_SAFE_INTEGER,
     duration: 3,
-    totalFloat: 4,
-    resources: 1
+    totalFloat: 0,
+    resources: 0,
+    successors: null,
+    predecessors: ['D'],
+    isCritical: false
   },
 
   {
     code: 'G',
     description: null,
-    earlyStart: 5,
-    earlyFinish: 9,
-    lateStart: 9,
-    lateFinish: 13,
+    earlyStart: 0,
+    earlyFinish: 0,
+    lateStart: 0,
+    lateFinish: Number.MAX_SAFE_INTEGER,
     duration: 4,
-    totalFloat: 4,
-    resources: 3
+    totalFloat: 0,
+    resources: 0,
+    successors: null,
+    predecessors: ['B'],
+    isCritical: false
   },
 
   {
     code: 'H',
     description: null,
-    earlyStart: 9,
-    earlyFinish: 14,
-    lateStart: 13,
-    lateFinish: 18,
+    earlyStart: 0,
+    earlyFinish: 0,
+    lateStart: 0,
+    lateFinish: Number.MAX_SAFE_INTEGER,
     duration: 5,
-    totalFloat: 4,
-    resources: 2
+    totalFloat: 0,
+    resources: 0,
+    successors: null,
+    predecessors: ['F', 'G'],
+    isCritical: false
   },
 
   {
     code: 'I',
     description: null,
-    earlyStart: 9,
-    earlyFinish: 13,
-    lateStart: 9,
-    lateFinish: 13,
+    earlyStart: 0,
+    earlyFinish: 0,
+    lateStart: 0,
+    lateFinish: Number.MAX_SAFE_INTEGER,
     duration: 4,
     totalFloat: 0,
-    resources: 3
+    resources: 0,
+    successors: null,
+    predecessors: ['C'],
+    isCritical: false
   },
 
   {
     code: 'J',
     description: null,
-    earlyStart: 13,
-    earlyFinish: 15,
-    lateStart: 13,
-    lateFinish: 15,
+    earlyStart: 0,
+    earlyFinish: 0,
+    lateStart: 0,
+    lateFinish: Number.MAX_SAFE_INTEGER,
     duration: 2,
     totalFloat: 0,
-    resources: 4
+    resources: 0,
+    successors: null,
+    predecessors: ['E', 'I'],
+    isCritical: false
   },
 
   {
     code: 'K',
     description: null,
-    earlyStart: 15,
-    earlyFinish: 18,
-    lateStart: 15,
-    lateFinish: 18,
+    earlyStart: 0,
+    earlyFinish: 0,
+    lateStart: 0,
+    lateFinish: Number.MAX_SAFE_INTEGER,
     duration: 3,
     totalFloat: 0,
-    resources: 5
+    resources: 0,
+    successors: null,
+    predecessors: ['J'],
+    isCritical: false
   }
 ];

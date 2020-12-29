@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ApexAxisChartSeries, ApexChart, ApexPlotOptions, ApexXAxis, ApexYAxis, ChartComponent} from 'ng-apexcharts';
 import {activityTable} from '../../test-data/activity-table';
+import {DataService} from "../services/data.service";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -18,7 +19,7 @@ export class ActivityGraphComponent implements OnInit {
 
   @ViewChild('chart') chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
-  constructor() {
+  constructor( private dataService: DataService) {
     this.chartOptions = {
       series: [
         {
@@ -71,7 +72,7 @@ export class ActivityGraphComponent implements OnInit {
   }
 
   public getData() {
-    const temp = activityTable;
+    const temp = this.dataService.getCPM();
     temp.sort((a, b) => {
       return a.totalFloat - b.totalFloat;
     });
@@ -87,7 +88,7 @@ export class ActivityGraphComponent implements OnInit {
   }
 
   private getSlackTimeData() {
-    const temp = activityTable;
+    const temp = this.dataService.getCPM();
     temp.sort((a, b) => {
       return a.totalFloat - b.totalFloat;
     });

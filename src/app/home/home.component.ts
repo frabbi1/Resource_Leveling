@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {Activity} from '../models';
+import {Activity, NullActivity} from '../models';
 import {FormArray, FormBuilder} from "@angular/forms";
+import {DataService} from "../services/data.service";
+import {CpmService} from "../services/cpm.service";
+import {activityTable} from "../../test-data/activity-table";
 
 @Component({
   selector: 'app-home',
@@ -15,7 +18,7 @@ export class HomeComponent implements OnInit {
   formActivities;
   formItems: FormArray;
 
-  constructor(private router: Router, private fb: FormBuilder) { }
+  constructor(private router: Router, private fb: FormBuilder, private cpm: CpmService, private ds: DataService) { }
 
   ngOnInit(): void {
   }
@@ -31,8 +34,12 @@ export class HomeComponent implements OnInit {
   }
 
   onProcess() {
-    console.log(this.formActivities);
-    // this.router.navigate(['activity-graph'], {}).then();
+    const activityList: Activity[] = this.formActivities.value.activities;
+    // const activityList: Activity[] = activityTable;
+    this.setSuccessors(activityList);
+    const processedActivities: Activity[] = this.cpm.getCpmTable(activityList);
+    this.ds.setCPM(processedActivities);
+    this.router.navigate(['activity-graph']).then();
   }
 
   private createActivities(numOfActivities) {
@@ -41,10 +48,11 @@ export class HomeComponent implements OnInit {
       const tempActivity: Activity = {
         code: 'A' + (i + 1).toString(),
         predecessors: [],
+        successors: [],
         resources: 0,
         totalFloat: 0,
         duration: 0,
-        lateFinish: 0,
+        lateFinish: Number.MAX_SAFE_INTEGER,
         lateStart: 0,
         earlyFinish: 0,
         earlyStart: 0,
@@ -58,7 +66,9 @@ export class HomeComponent implements OnInit {
 
   getOtherActivities(selfActivity: Activity) {
     const tempActivities = this.formActivities.get('activities').value;
-    return tempActivities.filter(a => a.code !== selfActivity.code);
+    const x: Activity[] =  tempActivities.filter(a => a.code !== selfActivity.code);
+    x.unshift(NullActivity);
+    return x;
   }
 
   private createForm(fgs) {
@@ -75,16 +85,36 @@ export class HomeComponent implements OnInit {
   private createActivityForm(serial) {
     return this.fb.group({
       code: ['A' + serial],
-      predecessors: [[]],
+      predecessors: null,
+      successors: null,
       resources: [0],
       totalFloat: [0],
       duration: [0],
-      lateFinish: [0],
+      lateFinish: [Number.MAX_SAFE_INTEGER],
       lateStart: [0],
       earlyFinish: [0],
       earlyStart: [0],
       description: [undefined],
       isCritical: [false]
+    });
+  }
+
+
+  private setSuccessors(activityList: Activity[]) {
+    activityList.forEach(activity => {
+      const predList = activity.predecessors;
+      predList.forEach((p) => {
+        if (p === 'NONE') {}
+        else {
+          const targetActivity = activityList.filter( a => a.code === p)[0];
+          if (targetActivity !== null) {
+            if ( targetActivity.successors === null ) {
+              targetActivity.successors = [];
+            }
+            targetActivity.successors.push(activity.code);
+          }
+        }
+      });
     });
   }
 }

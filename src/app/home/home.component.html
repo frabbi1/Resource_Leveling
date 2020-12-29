@@ -10,7 +10,9 @@
 
   <div *ngIf="isActivityNumberGiven">
     <form [formGroup]="formActivities"  (ngSubmit)="onProcess()">
-    <button class="btn btn-primary" type = "submit"> Process </button>
+    <button class="btn btn-primary" type = "submit">
+      Process
+    </button>
       <table class="table" formArrayName="activities">
         <thead>
         <tr>
@@ -25,7 +27,6 @@
           <th scope="row">{{element.value.code}}</th>
           <td>
             <ng-select  multiple="true" style="margin-top: -15px" formControlName="predecessors">
-              <ng-option [value]="null" > none </ng-option>
               <ng-option *ngFor="let activity of getOtherActivities(element.value); index as j"
                          [value]="activity.code">
                 {{activity.code}}
