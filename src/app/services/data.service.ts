@@ -25,4 +25,10 @@ export class DataService {
   public getProjectCompletionTime() {
     return this.cpm.getProjectCompletionTime(this.cpmList);
   }
+  public setBurgessData(activityList: Activity[]) {
+    this.burgessList = activityList;
+  }
+  public getBurgessData() {
+    return this.burgessList;
+  }
 }

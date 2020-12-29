@@ -40,11 +40,9 @@ export class HomeComponent implements OnInit {
     this.setSuccessors(activityList);
     const processedActivities: Activity[] = this.cpm.getCpmTable(activityList);
     this.ds.setCPM(processedActivities);
-    const t0 = performance.now();
-    this.bg.processBurgess(processedActivities);
-    const t1 = performance.now();
-    console.log(t1 - t0);
-    this.router.navigate(['activity-graph']).then();
+    const burgessData = this.bg.processBurgess(processedActivities);
+    this.ds.setBurgessData(burgessData);
+    this.router.navigate(['activity-graph/cpm']).then();
   }
 
   private createActivities(numOfActivities) {

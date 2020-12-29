@@ -17,6 +17,7 @@ export class BurgessService {
     this.initActivities(activities);
     this.sortByEF()
     this.doBurgess();
+    return this.activityList;
   }
 
   private initActivities(activities: Activity[]) {

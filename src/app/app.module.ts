@@ -11,7 +11,6 @@ import {NgSelectModule} from '@ng-select/ng-select';
 import { AboutUsComponent } from './about-us/about-us.component';
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 import { CpmGraphComponent } from './activity-graph/cpm-graph/cpm-graph.component';
-import { BurgessGraphComponent } from './burgess-graph/burgess-graph.component';
 import { BurgessDiagramComponent } from './activity-graph/burgess-diagram/burgess-diagram.component';
 
 @NgModule({
@@ -21,7 +20,6 @@ import { BurgessDiagramComponent } from './activity-graph/burgess-diagram/burges
     ActivityGraphComponent,
     AboutUsComponent,
     CpmGraphComponent,
-    BurgessGraphComponent,
     BurgessDiagramComponent
   ],
   imports: [
