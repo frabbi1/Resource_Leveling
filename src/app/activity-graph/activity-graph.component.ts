@@ -19,6 +19,7 @@ export class ActivityGraphComponent implements OnInit {
 
   @ViewChild('chart') chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
+  public projectCompletionTime = 0;
   constructor( private dataService: DataService) {
     this.chartOptions = {
       series: [
@@ -104,6 +105,7 @@ export class ActivityGraphComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.projectCompletionTime = this.dataService.getProjectCompletionTime();
   }
 
 }

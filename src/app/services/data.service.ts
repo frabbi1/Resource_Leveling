@@ -19,4 +19,15 @@ export class DataService {
   public getCPM() {
     return this.cpmList;
   }
+
+  public getProjectCompletionTime() {
+    let max = 0;
+    this.cpmList.forEach(act => {
+      if(act.isCritical === true) {
+        max = Math.max(act.lateFinish, max);
+      }
+    });
+
+    return max;
+  }
 }
