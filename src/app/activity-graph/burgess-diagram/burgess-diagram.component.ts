@@ -100,5 +100,8 @@ export class BurgessDiagramComponent implements OnInit {
   public getSumRsqr() {
     return this.resTable.sumRsqr;
   }
+  getCriticalActivities() {
+    return this.dataService.getCriticalActivities();
+  }
 
 }

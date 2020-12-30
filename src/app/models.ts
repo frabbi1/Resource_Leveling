@@ -1,3 +1,5 @@
+import construct = Reflect.construct;
+
 export interface Activity {
   code: string;
   description?: string;
@@ -28,4 +30,22 @@ export let NullActivity: Activity = {
   description: undefined,
   isCritical: false,
   freeFloat: 0
+}
+
+export class ListNode {
+  public data: any;
+  public prev: any;
+  public next: any;
+  constructor(data) {
+    this.data  = data;
+    this.prev = null;
+    this.next = null;
+  }
+}
+
+export class LinkedList {
+  public head: any;
+  constructor(head = null) {
+    this.head = head;
+  }
 }

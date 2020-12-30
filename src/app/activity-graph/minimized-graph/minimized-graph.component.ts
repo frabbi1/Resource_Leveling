@@ -1,31 +1,32 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ApexAxisChartSeries, ApexChart, ApexPlotOptions, ApexXAxis, ApexYAxis, ChartComponent} from "ng-apexcharts";
+import {ChartComponent} from "ng-apexcharts";
+import {ChartOptions} from "../cpm-graph/cpm-graph.component";
 import {DataService} from "../../services/data.service";
 import {ResourceService} from "../../services/resource.service";
 
-export type ChartOptions = {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  xAxis: ApexXAxis;
-  plotOptions: ApexPlotOptions;
-  yAxis: ApexYAxis
-};
 @Component({
-  selector: 'app-cpm-graph',
-  templateUrl: './cpm-graph.component.html',
-  styleUrls: ['./cpm-graph.component.css']
+  selector: 'app-minimized-graph',
+  templateUrl: './minimized-graph.component.html',
+  styleUrls: ['./minimized-graph.component.css']
 })
-export class CpmGraphComponent implements OnInit {
+export class MinimizedGraphComponent implements OnInit {
 
   @ViewChild('chart') chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
   public projectCompletionTime = 0;
   private resTable;
-  constructor( private dataService: DataService, private rService: ResourceService) {
-  }
+  constructor(private dataService: DataService, private rService: ResourceService) { }
 
+  ngOnInit(): void {
+    this.projectCompletionTime = this.dataService.getProjectCompletionTime();
+    this.resTable = this.rService.getResourceTable(this.dataService.getMinimizedData());
+    this.initChart();
+  }
   public getData() {
-    const temp = this.dataService.getCPM();
+    const temp = this.dataService.getMinimizedData();
+    temp.sort((a, b) => {
+      return a.earlyFinish - b.earlyFinish;
+    });
     temp.sort((a, b) => {
       return a.totalFloat - b.totalFloat;
     });
@@ -40,44 +41,6 @@ export class CpmGraphComponent implements OnInit {
     return data;
   }
 
-  private getSlackTimeData() {
-    const temp = this.dataService.getCPM();
-    temp.sort((a, b) => {
-      return a.earlyFinish - b.earlyFinish;
-    });
-    temp.sort((a, b) => {
-      return a.totalFloat - b.totalFloat;
-    });
-    const data = [];
-    temp.forEach(element => {
-      const datum = {
-        x: element.code,
-        y: [element.earlyFinish, element.earlyFinish + element.totalFloat]
-      };
-      data.push(datum);
-    });
-    return data;
-  }
-
-  ngOnInit(): void {
-    this.projectCompletionTime = this.dataService.getProjectCompletionTime();
-    this.resTable = this.rService.getResourceTable(this.dataService.getCPM());
-    this.initChart();
-  }
-
-  public getDailyR() {
-    return this.resTable.dailyR;
-  }
-  public getDailyRsqr() {
-    return this.resTable.dailyRsqr;
-  }
-  public getSumR() {
-    return this.resTable.sumR;
-  }
-  public getSumRsqr() {
-    return this.resTable.sumRsqr;
-  }
-
   private initChart() {
     this.chartOptions = {
       series: [
@@ -85,11 +48,6 @@ export class CpmGraphComponent implements OnInit {
           name: 'Activity Timestamp',
           color: '#1e00ff',
           data: this.getData()
-        },
-        {
-          name: 'Slack Time',
-          color: '#87afff',
-          data: this.getSlackTimeData()
         }
       ],
       chart: {
@@ -130,7 +88,20 @@ export class CpmGraphComponent implements OnInit {
     };
   }
 
+  public getDailyR() {
+    return this.resTable.dailyR;
+  }
+  public getDailyRsqr() {
+    return this.resTable.dailyRsqr;
+  }
+  public getSumR() {
+    return this.resTable.sumR;
+  }
+  public getSumRsqr() {
+    return this.resTable.sumRsqr;
+  }
   getCriticalActivities() {
     return this.dataService.getCriticalActivities();
   }
+
 }

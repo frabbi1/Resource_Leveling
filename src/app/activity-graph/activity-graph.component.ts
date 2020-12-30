@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {DataService} from "../services/data.service";
 import {ResourceService} from "../services/resource.service";
 import {Router} from "@angular/router";
+import {MinimizedService} from "../services/minimized.service";
 
 @Component({
   selector: 'app-activity-graph',
@@ -10,7 +11,7 @@ import {Router} from "@angular/router";
 })
 export class ActivityGraphComponent implements OnInit {
 
-  constructor( private router: Router) {
+  constructor( private router: Router, private miniService: MinimizedService, private ds: DataService) {
   }
   ngOnInit(): void {}
   gotoCPM() {
@@ -18,5 +19,9 @@ export class ActivityGraphComponent implements OnInit {
   }
   gotoBurgess() {
     this.router.navigate(['activity-graph/burgess']).then();
+  }
+  gotoMinimized() {
+    this.ds.setMinimizedData(this.miniService.processMinimized());
+    this.router.navigate(['activity-graph/minimized']).then();
   }
 }
