@@ -24,4 +24,8 @@ export class ActivityGraphComponent implements OnInit {
     this.ds.setMinimizedData(this.miniService.processMinimized());
     this.router.navigate(['activity-graph/minimized']).then();
   }
+
+  showTable() {
+    this.router.navigate(['activity-graph/show-table']).then();
+  }
 }

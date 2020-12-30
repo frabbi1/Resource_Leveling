@@ -1,0 +1,34 @@
+<div class="ml-5 mt-4">
+<table class="table">
+  <thead style="background-color: orange">
+  <tr>
+    <th scope="row">Activity</th>
+    <th scope="row">Predecessors</th>
+    <th scope="row">Duration</th>
+    <th scope="row">Early Start</th>
+    <th scope="row">Early Finish</th>
+    <th scope="row">Latest Start</th>
+    <th scope="row">Latest Finish</th>
+    <th scope="row">Total Float</th>
+    <th scope="row">Free Float</th>
+    <th scope="row">Resources</th>
+    <th scope="row">Critical</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let act of getList()">
+    <td >{{act.code}}</td>
+    <td > <span *ngFor="let p of act.predecessors; index as i"> &nbsp;{{p}}<span *ngIf="i < act.predecessors.length-1">,</span> </span></td>
+    <td >{{act.duration}}</td>
+    <td >{{act.earlyStart}}</td>
+    <td >{{act.earlyFinish}}</td>
+    <td >{{act.lateStart}}</td>
+    <td >{{act.lateFinish}}</td>
+    <td >{{act.totalFloat}}</td>
+    <td >{{act.freeFloat}}</td>
+    <td >{{act.resources}}</td>
+    <td >{{act.isCritical ? 'Yes' : 'No' }}</td>
+  </tr>
+  </tbody>
+</table>
+</div>

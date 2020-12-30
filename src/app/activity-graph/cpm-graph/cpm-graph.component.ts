@@ -27,6 +27,9 @@ export class CpmGraphComponent implements OnInit {
   public getData() {
     const temp = this.dataService.getCPM();
     temp.sort((a, b) => {
+      return a.earlyFinish - b.earlyFinish;
+    });
+    temp.sort((a, b) => {
       return a.totalFloat - b.totalFloat;
     });
     const data = [];
