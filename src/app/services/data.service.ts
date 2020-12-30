@@ -10,7 +10,7 @@ export class DataService {
 
   private cpmList: Activity[];
   private burgessList: Activity[];
-  private optimalList: Activity[];
+  private minimalList: Activity[];
 
   constructor(private cpm: CpmService) { }
 
@@ -35,5 +35,13 @@ export class DataService {
     const aList = _.cloneDeep(this.cpmList);
     aList.sort((a, b) => a.earlyFinish - b.earlyFinish);
     return aList.filter(act => act.isCritical === true);
+  }
+
+  public setMinimizedData(activityList: Activity[]) {
+    this.minimalList = activityList;
+  }
+
+  public getMinimizedData() {
+    return this.minimalList;
   }
 }

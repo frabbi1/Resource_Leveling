@@ -18,50 +18,11 @@ export class MinimizedService {
 
   public processMinimized() {
     this.activityList = _.cloneDeep(this.ds.getCPM());
-    this.activityList.sort((a, b) => b.earlyFinish - a.earlyFinish);
+    this.activityList.sort((a, b) => a.earlyFinish - b.earlyFinish);
     this.globalMinRSquare = Number.MAX_SAFE_INTEGER;
     this.globalMinState = null;
-    this.runProcess();
-  }
-
-  private runProcess() {
-    const clonedActivities = _.cloneDeep(this.activityList);
-    const nonCriticalList = clonedActivities.filter(a => a.isCritical === false);
-    this.recursiveProcess(nonCriticalList, nonCriticalList.length - 1);
-  }
-
-  private recursiveProcess(nonCriticalList: Activity[], idx: number) {
-    const clonedNonCriticalList = _.cloneDeep(nonCriticalList);
-    if (idx === 0 && clonedNonCriticalList[idx].freeFloat === 0) {
-      return;
-    } else {
-      const limit = clonedNonCriticalList.length - 1; // need clone
-      let activity: Activity;
-      if (idx >= limit) {
-        activity = clonedNonCriticalList[limit];
-        idx = limit;
-      } else {
-        activity = clonedNonCriticalList[idx];
-      }
-      if (activity.freeFloat > 0) {
-        activity.earlyFinish = activity.earlyStart + 1;
-        activity.earlyFinish = activity.earlyStart + activity.duration;
-        const aList = this.makeFullListWithCritical(clonedNonCriticalList);
-        this.saveMinState(aList);
-        this.cpm.countFreeFloat(clonedNonCriticalList);
-        this.recursiveProcess(clonedNonCriticalList, idx + 1);
-      } else {
-        this.recursiveProcess(clonedNonCriticalList, idx - 1);
-      }
-    }
-  }
-
-  private makeFullListWithCritical(ncList: Activity[]) {
-    const alList = this.activityList.filter(a => a.isCritical === true);
-    ncList.forEach(el => {
-      alList.push(el);
-    });
-    return alList;
+    this.pesudo();
+    return this.globalMinState;
   }
 
   private saveMinState(aList: Activity[]) {
@@ -69,7 +30,71 @@ export class MinimizedService {
     const rSquare = sumRSquare[sumRSquare.length - 1];
     if (rSquare < this.globalMinRSquare) {
       this.globalMinRSquare = rSquare;
-      this.globalMinState = aList;
+      this.globalMinState = _.cloneDeep(aList);
     }
+  }
+  private getNonCriticalList(aList: Activity[]) {
+    return aList.filter(a => a.isCritical === false);
+  }
+
+  private pesudo() {
+    const nonCritical = this.getNonCriticalList(this.activityList);
+    const availableSlot = [];
+    nonCritical.forEach(a => {
+      if (a.isCritical === false) {
+        availableSlot.push(this.makeListWithTF(a.totalFloat, a.earlyStart));
+      }
+    });
+    const combination = this.cartesian(availableSlot);
+    this.generateResult(combination);
+  }
+
+  private makeListWithTF(tf, es) {
+    const l = [];
+    for (let i = es; i <= es + tf; i++) {
+      l.push(i);
+    }
+    return l;
+  }
+  private cartesian(args) {
+    const r = [];
+    const max = args.length - 1;
+    const helper = (arr, i) => {
+      for (let j = 0, l = args[i].length; j < l; j++) {
+        const a = arr.slice(0); // clone arr
+        a.push(args[i][j]);
+        if (i === max){
+          r.push(a);
+        }
+        else{
+          helper(a, i + 1);
+        }
+      }
+    }
+    helper([], 0);
+    return r;
+  }
+
+  private generateResult(combination: any[]) {
+    const nc = this.getNonCriticalList(this.activityList);
+    combination.forEach(c => {
+      for (let i = 0; i < c.length; i++ ) {
+        nc[i].earlyStart = c[i];
+        nc[i].earlyFinish = nc[i].earlyStart + nc[i].duration;
+      }
+      this.cpm.countFreeFloat(this.activityList);
+      if (this.isValidCombo(this.activityList)) {
+        this.saveMinState(this.activityList);
+      }
+    });
+  }
+
+  private isValidCombo(activityList: Activity[]) {
+    activityList.forEach(a => {
+      if ( a.freeFloat < 0 ) {
+        return false;
+      }
+    });
+    return true;
   }
 }
