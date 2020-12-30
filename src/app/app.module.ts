@@ -12,6 +12,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 import { CpmGraphComponent } from './activity-graph/cpm-graph/cpm-graph.component';
 import { BurgessDiagramComponent } from './activity-graph/burgess-diagram/burgess-diagram.component';
+import { MinimizedGraphComponent } from './activity-graph/minimized-graph/minimized-graph.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { BurgessDiagramComponent } from './activity-graph/burgess-diagram/burges
     ActivityGraphComponent,
     AboutUsComponent,
     CpmGraphComponent,
-    BurgessDiagramComponent
+    BurgessDiagramComponent,
+    MinimizedGraphComponent
   ],
   imports: [
     BrowserModule, NgApexchartsModule, AppRoutingModule, FormsModule, NgSelectModule, ReactiveFormsModule
