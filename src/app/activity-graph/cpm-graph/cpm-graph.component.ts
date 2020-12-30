@@ -43,6 +43,9 @@ export class CpmGraphComponent implements OnInit {
   private getSlackTimeData() {
     const temp = this.dataService.getCPM();
     temp.sort((a, b) => {
+      return a.earlyFinish - b.earlyFinish;
+    });
+    temp.sort((a, b) => {
       return a.totalFloat - b.totalFloat;
     });
     const data = [];
@@ -127,4 +130,7 @@ export class CpmGraphComponent implements OnInit {
     };
   }
 
+  getCriticalActivities() {
+    return this.dataService.getCriticalActivities();
+  }
 }

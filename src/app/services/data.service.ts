@@ -31,4 +31,9 @@ export class DataService {
   public getBurgessData() {
     return this.burgessList;
   }
+  public getCriticalActivities() {
+    const aList = _.cloneDeep(this.cpmList);
+    aList.sort((a, b) => a.earlyFinish - b.earlyFinish);
+    return aList.filter(act => act.isCritical === true);
+  }
 }
