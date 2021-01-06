@@ -22,7 +22,9 @@ export class DemoComponent implements OnInit {
     const processedActivities: Activity[] = this.cpm.getCpmTable(activityList);
     this.ds.setCPM(processedActivities);
     const burgessData = this.bg.processBurgess(processedActivities);
+    const burgessV2Data = this.bg.processBurgessV2(processedActivities);
     this.ds.setBurgessData(burgessData);
+    this.ds.setBurgessV2Data(burgessV2Data);
     this.router.navigate(['activity-graph/cpm']).then();
   }
   private setSuccessors(activityList: Activity[]) {

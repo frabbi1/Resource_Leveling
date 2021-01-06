@@ -8,6 +8,7 @@ import {BurgessDiagramComponent} from "./activity-graph/burgess-diagram/burgess-
 import {MinimizedGraphComponent} from "./activity-graph/minimized-graph/minimized-graph.component";
 import {DemoComponent} from "./demo/demo.component";
 import {AllinfoTableComponent} from "./activity-graph/allinfo-table/allinfo-table.component";
+import {BurgessV2DiagramComponent} from "./activity-graph/burgess-v2-diagram/burgess-v2-diagram.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
     children: [
       {path: 'cpm', component: CpmGraphComponent},
       {path: 'burgess', component: BurgessDiagramComponent},
+      {path: 'burgess-v2', component: BurgessV2DiagramComponent},
       {path: 'minimized', component: MinimizedGraphComponent},
       {path: 'show-table', component: AllinfoTableComponent}
     ] },

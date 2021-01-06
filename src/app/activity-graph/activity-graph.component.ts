@@ -28,4 +28,8 @@ export class ActivityGraphComponent implements OnInit {
   showTable() {
     this.router.navigate(['activity-graph/show-table']).then();
   }
+
+  gotoBurgessV2() {
+    this.router.navigate(['activity-graph/burgess-v2']).then();
+  }
 }

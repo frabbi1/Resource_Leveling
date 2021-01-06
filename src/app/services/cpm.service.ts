@@ -17,9 +17,14 @@ export class CpmService {
     this.topologicalSort(activityList);
     this.doForwardPass(activityList);
     this.doBackwardPass(activityList);
-    this.countSlackTime(activityList);
-    this.countFreeFloat(activityList);
-    return activityList;
+    if (this.checkCyclic(activityList)) {
+      return [];
+    } else {
+      this.countSlackTime(activityList);
+      this.countFreeFloat(activityList);
+      return activityList;
+    }
+
   }
 
   private doForwardPass(activityList: Activity[]) {
@@ -165,5 +170,15 @@ export class CpmService {
     });
 
     return max;
+  }
+
+  private checkCyclic(activityList: Activity[]) {
+    // tslint:disable-next-line:prefer-for-of
+    for (let x = 0; x < activityList.length; x++ ) {
+      if (activityList[x].lateStart < 0 || activityList[x].lateFinish < 0) {
+        return true;
+      }
+    }
+    return false;
   }
 }

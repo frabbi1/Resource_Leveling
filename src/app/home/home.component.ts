@@ -40,10 +40,16 @@ export class HomeComponent implements OnInit {
     // const activityList: Activity[] = activityTable;
     this.setSuccessors(activityList);
     const processedActivities: Activity[] = this.cpm.getCpmTable(activityList);
-    this.ds.setCPM(processedActivities);
-    const burgessData = this.bg.processBurgess(processedActivities);
-    this.ds.setBurgessData(burgessData);
-    this.router.navigate(['activity-graph/cpm']).then();
+    if (processedActivities === [] || processedActivities.length <= 0) {
+      alert('Activity cyclic dependency detected');
+    } else {
+      this.ds.setCPM(processedActivities);
+      const burgessData = this.bg.processBurgess(processedActivities);
+      const burgessV2Data = this.bg.processBurgessV2(processedActivities);
+      this.ds.setBurgessData(burgessData);
+      this.ds.setBurgessV2Data(burgessV2Data);
+      this.router.navigate(['activity-graph/cpm']).then();
+    }
   }
 
   private createActivities(numOfActivities) {

@@ -11,6 +11,7 @@ export class DataService {
   private cpmList: Activity[];
   private burgessList: Activity[];
   private minimalList: Activity[];
+  private burgessV2List: Activity[];
 
   constructor(private cpm: CpmService) { }
 
@@ -43,5 +44,12 @@ export class DataService {
 
   public getMinimizedData() {
     return this.minimalList;
+  }
+
+  public setBurgessV2Data(activityList: Activity[]) {
+    this.burgessV2List = activityList;
+  }
+  public getBurgessV2Data() {
+    return this.burgessV2List;
   }
 }

@@ -15,6 +15,7 @@ import { BurgessDiagramComponent } from './activity-graph/burgess-diagram/burges
 import { MinimizedGraphComponent } from './activity-graph/minimized-graph/minimized-graph.component';
 import { DemoComponent } from './demo/demo.component';
 import { AllinfoTableComponent } from './activity-graph/allinfo-table/allinfo-table.component';
+import { BurgessV2DiagramComponent } from './activity-graph/burgess-v2-diagram/burgess-v2-diagram.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AllinfoTableComponent } from './activity-graph/allinfo-table/allinfo-ta
     BurgessDiagramComponent,
     MinimizedGraphComponent,
     DemoComponent,
-    AllinfoTableComponent
+    AllinfoTableComponent,
+    BurgessV2DiagramComponent
   ],
   imports: [
     BrowserModule, NgApexchartsModule, AppRoutingModule, FormsModule, NgSelectModule, ReactiveFormsModule
